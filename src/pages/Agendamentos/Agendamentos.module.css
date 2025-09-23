@@ -1,0 +1,43 @@
+.containerView{
+     display: grid;
+    grid-template-columns: 0.5fr 3fr;
+    
+    background-color: black;
+}
+.containerContent{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.areaCards{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.searchCardContainer{
+    background-color: white;
+    padding: 10px;
+    width: calc(100% - 5%);
+    align-self: center;
+    border-radius: 10px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.searchCardContainer > p {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.buttonArea{
+    display: flex;
+    gap: 20px;
+}
+.buttonArea > button {
+    width: 70px;
+    padding: 2px;
+    border: 1px solid rgba(128, 128, 128, 0.329);
+    border-radius: 5px;
+    cursor: pointer;
+}

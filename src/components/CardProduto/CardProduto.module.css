@@ -1,0 +1,87 @@
+.containerCardProduto{
+    width: 300px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.226);
+    padding: 10px;
+}
+.topContent{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.infoTopContent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid  rgba(128, 128, 128, 0.226);
+}
+.infoTopContent > p{
+    font-weight: bold;
+}
+.infoTopContent > span{
+    font-size: 0.9rem;  
+}
+.productDescriptionContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.productCategory{
+ 
+font-family: sans-serif;
+
+
+}
+.descriptionProduct{
+    color: grey;
+}
+.bottomContent{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid   rgba(128, 128, 128, 0.226);
+    gap: 15px;
+    padding-top: 10px;
+    
+}
+.infoBottomContent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.priceProduct{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.quantityProduct{
+    color: grey;
+    font-size: 0.9rem;
+}
+.containerButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.containerButton > button {
+    display: flex;
+    width: 100px;
+    padding: 4px;
+    border-radius: 5px;
+    border: none;
+    gap: 5px;
+    justify-content: center;
+    cursor: pointer;
+}
+.btnEdit{
+    background-color: rgb(46, 46, 46);
+    color: white;
+}
+.btnDelet{
+    color: red;
+    background-color: rgba(255, 0, 0, 0.164);
+}

@@ -1,0 +1,73 @@
+.containerCardAgendamento{
+    background-color: white;
+    width: calc(100% - 5%);
+    align-self: center;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.containerTopContent{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.363);
+    padding-bottom: 25px;
+    
+}
+.containerTopContent > p{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+}
+.containerInfoDate{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    color: black;
+    font-weight: normal;
+    font-family: sans-serif;
+}
+
+.infoHoursAndValue{
+    display: flex;
+    gap: 40px;
+}
+.duration{
+    color: gray;
+}
+
+
+.containerBottomContent{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+.containerButton{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.containerButton > button{
+    padding: 5px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.btnConfirmar{
+    background-color: rgba(0, 128, 0, 0.164);
+    color: green;
+}
+.btnAgendar{
+    background-color: rgba(0, 0, 255, 0.164);
+    color: blue;
+}
+.btnCancelar{
+    background-color: rgba(255, 0, 0, 0.164);
+    color: red;
+}

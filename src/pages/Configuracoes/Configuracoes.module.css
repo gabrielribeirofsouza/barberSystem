@@ -1,0 +1,114 @@
+.containerView{
+     display: grid;
+    grid-template-columns: 0.5fr 3fr;
+    
+    background-color: black;
+}
+.containerContent{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.container{
+    background-color: white;
+    width: calc(100% - 3%);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: center;
+}
+.containerTop{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.adminIcon{
+    font-size: 2rem;
+    color: grey;
+}
+.infoAdmin{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.infoAdmin > h1{
+    font-family: sans-serif;
+    font-size: 1.5rem;
+}
+.infoAdmin > p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+.infoAdmin > p > span{
+    color: rgb(82, 82, 82);
+}
+.containerCenter{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.containerForm > form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.containerForm > form > label{
+    color: rgb(65, 64, 64);
+}
+.containerForm > form > input{
+    padding: 4px;
+    cursor: not-allowed;
+    border: 1px solid rgba(128, 128, 128, 0.164);
+}
+.containerButton{
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.containerButton > button {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btnEdit{
+    width: calc(100% - 10%);
+    background-color: rgb(71, 71, 71);
+    color: white;
+}
+.btnDelet{
+    background-color: rgba(255, 0, 0, 0.164);
+    color: red;
+}
+.containerBottom{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.containerSenha{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.containerSenha > input {
+    
+    padding: 10px;
+    cursor: not-allowed;
+}
+.containerSenha > button{
+    align-self: flex-end;
+    width: 150px;
+    padding: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.651);
+    
+}

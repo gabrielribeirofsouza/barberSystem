@@ -1,0 +1,30 @@
+.containerCard{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 30px;
+    border: 1px solid rgba(128, 128, 128, 0.247);
+    padding: 20px;
+    border-radius: 10px;
+}
+.infoUserCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dataUser{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.containerCard > button {
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(255, 0, 0, 0.158);
+    color: red;
+    cursor: pointer;
+}
+.containerCard > button > span {
+    margin-right: 10px;
+}

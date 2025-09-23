@@ -1,0 +1,42 @@
+.containerContent{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    padding: 2%;
+}
+.container{
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 20px;
+    
+}
+
+.topBox{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.topBox > p {
+    color: rgb(102, 102, 102);
+}
+.titleContainer{
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+.titleContainer> span{
+    margin-right: 15px;
+}
+
+
+.containerCardArea{
+    margin-top: 50px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: 600px;
+}

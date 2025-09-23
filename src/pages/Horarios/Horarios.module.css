@@ -1,0 +1,10 @@
+.containerView{
+     display: grid;
+    grid-template-columns: 0.5fr 3fr;
+    background-color: black;
+}
+.containerContent{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}

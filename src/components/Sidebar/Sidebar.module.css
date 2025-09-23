@@ -1,0 +1,84 @@
+li > a{
+    display: flex;
+    text-decoration: none;
+    gap: 10px;
+    cursor: pointer;
+    color: black;
+}
+.container{
+background-color: white;
+max-width: 100%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+gap: 30px;
+align-items: center;
+}
+
+
+.tituloAside{
+ 
+    color: black;
+    padding-top: 5%;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+
+    
+}
+
+
+.navigation{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 10%);
+}
+.lista{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-left: 15px;
+    list-style: none;
+    font-family: sans-serif
+}
+
+
+
+
+
+.user{
+    display: flex;
+   margin-left: 10px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+   
+   
+}
+.btnSair{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    margin-top: 20%;
+    position: relative;
+     left: -30%;
+     color: rgb(105, 105, 105);
+    
+}
+.btnSair > button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.perfilIcon{
+    font-size: 40px;
+    margin-right: 10px;
+}

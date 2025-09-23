@@ -1,0 +1,45 @@
+.containerCard{
+    color: black;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 280px;
+    height: 150px;
+    padding: 25px;
+    margin-top: 100px;
+    border-radius: 20px;
+    text-align: center;
+}
+.infoArea{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+   
+}
+.titleCard{
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.subTitleCard{
+    font-size: 0.9rem;
+    font-family: sans-serif;
+    color: grey;
+}
+.infoArea > button{
+    justify-self: center;
+    width: 80px;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    color: white;
+    border: none;
+   background-color: black;
+   border-radius: 10px;
+
+}
