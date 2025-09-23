@@ -23,13 +23,6 @@ MicroSAAS para gestão de barbearias: clientes, agendamentos e administração e
 
 ---
 
-## 📌 Roadmap
-
-- [ ] Autenticação e autorização   
-- [ ] Notificações de agendamento  
- 
-
----
 
 ## 📖 Sobre o projeto
 
