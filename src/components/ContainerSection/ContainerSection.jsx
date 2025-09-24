@@ -3,7 +3,11 @@ import { FaCalendarDay, FaCartPlus, FaClock, FaProductHunt, FaUserCheck, FaUserF
 import CardCLiente from '../../components/CardCliente/CardCliente';
 import CardHorario from '../CardHorario/CardHorario';
 import CardProduto from '../CardProduto/CardProduto';
+import { useContext } from 'react';
+import CLIENTES from '../../store/context/ClientesContext';
 function ContainerSection({titleContainer, id, description}){
+    const {cliente, setCliente} = useContext(CLIENTES)
+
     const icon = ()=>{
            if(id === 'Clientes'){
             return <FaUserFriends />
@@ -17,7 +21,9 @@ function ContainerSection({titleContainer, id, description}){
     }
     const card = ()=>{
         if(id === 'Clientes'){
-            return <CardCLiente />
+            return cliente.map((c, index) => (
+                 <CardCLiente key={index} nome={c.nome} status={c.status} email={c.email} telefone={c.telefone} cadastro={c.cadastro}/>
+                ))
         }
         if(id === 'Horarios'){
             return <CardHorario dia={'Segunda-feira'} status={'Ativo'} inicio={'09:00'} fim={'17:00'}/>

@@ -1,18 +1,19 @@
 import { FaTrash } from "react-icons/fa";
 import styles from './CardCliente.module.css'
-function CardCLiente (){
+function CardCLiente ({nome, status, email, telefone, cadastro}){
+ 
     return(
         <div className={styles.containerCard}>
 
             <div className={styles.infoUserCard}>
-            <p>Usuario1234</p>
-            <span>Ativo</span>
+            <p>{nome}</p>
+            <span>{status}</span>
             </div>
 
             <div className={styles.dataUser}>
-            <span>Email: teste123@gmail.com</span>
-            <span>Telefone: +190 98822-0029</span>
-            <span>Cadastrado em: 00/00/00</span>
+            <span>Email: {email}</span>
+            <span>Telefone: {telefone}</span>
+            <span>Cadastrado em: {cadastro}</span>
             </div>
             <button>
                 <span><FaTrash /></span>

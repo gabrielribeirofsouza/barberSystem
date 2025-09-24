@@ -9,6 +9,7 @@ import Agendamentos from './pages/Agendamentos/Agendamentos.jsx'
 import Servicos from './pages/Servicos/Servicos.jsx'
 import Produtos from './pages/Produtos/Produtos.jsx'
 import Configuracoes from './pages/Configuracoes/Configuracoes.jsx'
+import { ClientesProvider } from './store/context/ClientesContext.jsx'
 
 const rotas = createBrowserRouter([
   {
@@ -65,6 +66,8 @@ const rotas = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ClientesProvider>
    <RouterProvider router={rotas}/>
+    </ClientesProvider>
   </StrictMode>,
 )

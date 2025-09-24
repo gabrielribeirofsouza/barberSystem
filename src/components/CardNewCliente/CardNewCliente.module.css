@@ -1,0 +1,51 @@
+.container{
+    background-color: white;
+    width: calc(100% - 5%);
+    align-self: center;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.container > h2 {
+    padding: 10px;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    column-gap: 20px;
+}
+.contentLeftForm, .contentRightForm{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+.contentLeftForm > input, .contentRightForm > input{
+    padding: 5px;
+}
+.btnArea{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 5px;
+    gap: 10px;
+}
+.btnArea > button {
+    padding: 8px;
+    width: 100px;
+    border: 1px solid rgba(128, 128, 128, 0.158);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btnSalv {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: black;
+    color: white;
+    justify-content: center;
+}
