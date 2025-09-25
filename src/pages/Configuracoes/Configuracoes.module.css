@@ -1,3 +1,4 @@
+
 .containerView{
      display: grid;
     grid-template-columns: 0.5fr 3fr;
@@ -59,12 +60,16 @@
 }
 .containerForm > form > label{
     color: rgb(65, 64, 64);
+    margin-left: 5px;
+    align-self: start;
 }
 .containerForm > form > input{
-    padding: 4px;
-    cursor: not-allowed;
+    padding: 10px;
     border: 1px solid rgba(128, 128, 128, 0.164);
+    width: calc(100% - 2%);
+    
 }
+
 .containerButton{
     margin-top: 35px;
     display: flex;
@@ -110,5 +115,19 @@
     width: 150px;
     padding: 10px;
     border: 1px solid rgba(128, 128, 128, 0.651);
+    
+}
+.active{
+    cursor: auto;
+}
+.disabled{
+    cursor: not-allowed;
+}
+.btnSave{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    color: white;
     
 }

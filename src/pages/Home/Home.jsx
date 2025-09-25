@@ -3,7 +3,10 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from './Home.module.css'
 import CardModal from "../../components/CardModal/CardModal";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import USER from "../../store/context/UserContext";
 function Home() {
+    const {user} = useContext(USER)
 
     return ( 
     <div className={styles.container}>
@@ -14,7 +17,7 @@ function Home() {
 
             <div className={styles.modalBoasVindas}>
                 <div className={styles.modalText}>
-                    <h1>Bem-vindo, barbeiro1!</h1>
+                    <h1>Bem-vindo, {user.nome}</h1>
                     <h2>Seu sistema de agendamento inteligente está pronto para uso.</h2>
                     <div className={styles.iconsModal}>
                         <div className={styles.iconBox}>

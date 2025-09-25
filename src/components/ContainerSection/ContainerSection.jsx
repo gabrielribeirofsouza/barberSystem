@@ -7,7 +7,15 @@ import { useContext } from 'react';
 import CLIENTES from '../../store/context/ClientesContext';
 function ContainerSection({titleContainer, id, description}){
     const {cliente, setCliente} = useContext(CLIENTES)
-
+    const dias = [
+        {dia: 'Segunda-feira'},
+        {dia: 'Terça-feira'},
+        {dia: 'Quarta-feira'},
+        {dia: 'Quinta-feira'},
+        {dia: 'Sexta-feira'},
+        {dia: 'Sábado'},
+        {dia: 'Domingo'},
+    ]
     const icon = ()=>{
            if(id === 'Clientes'){
             return <FaUserFriends />
@@ -26,7 +34,10 @@ function ContainerSection({titleContainer, id, description}){
                 ))
         }
         if(id === 'Horarios'){
-            return <CardHorario dia={'Segunda-feira'} status={'Ativo'} inicio={'09:00'} fim={'17:00'}/>
+            return dias.map((d, index) => (
+                <CardHorario dia={d.dia} key={index}/>
+            ))
+
         }
         if(id === 'Produtos'){
             return <CardProduto />

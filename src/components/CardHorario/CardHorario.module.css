@@ -1,6 +1,6 @@
 .containerCardHorario{
     width: 300px;
-    height: 80px;
+    height: auto;
     gap: 30px;
     padding: 25px;
     display: flex;
@@ -26,6 +26,12 @@
     align-items: center;
     gap: 10px;
 }
+.areaEditContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
 .btnEditarHours{
     width: 115px;
     padding: 4px;
@@ -38,4 +44,60 @@
 }
 .btnEditarHours > span {
     margin-right: 5px;
+}
+
+.inputEditArea > form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.inputEditArea > form > label {
+   align-self: flex-start;
+}
+.inputEditArea > form > input { 
+    width: 300px;
+    padding: 8px;
+}
+.statusBox{
+    display: flex;
+    justify-self: center;
+    gap: 10px;
+    margin-top: 20px;
+
+}
+.btnAreaEdit{
+    display: flex;
+    align-self: flex-end;
+    gap: 10px;
+}
+.btnAreaEdit > button {
+    padding: 10px;
+    border: none;
+    width: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btnSave{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    background-color: rgb(31, 31, 31);
+    color: white;
+}
+.active{
+    background-color: rgba(0, 128, 0, 0.705);
+    padding: 5px;
+    width: 50px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+}
+.off{
+    background-color: red;
+    color: white;
+    padding: 5px;
+    width: 50px;
+    text-align: center;
+    border-radius: 10px;
+    
 }
