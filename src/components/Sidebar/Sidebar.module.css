@@ -7,7 +7,7 @@ li > a{
 }
 .container{
 background-color: white;
-max-width: 100%;
+max-width: 300px;
 height: 100vh;
 display: flex;
 flex-direction: column;

@@ -85,3 +85,13 @@ font-family: sans-serif;
     color: red;
     background-color: rgba(255, 0, 0, 0.164);
 }
+.btnEditDisable{
+    cursor: not-allowed;
+    background-color: rgb(46, 46, 46);
+    color: white;
+}
+.btnDeletDisable{
+    color: red;
+    background-color: rgba(255, 0, 0, 0.164);
+    cursor: not-allowed;
+}

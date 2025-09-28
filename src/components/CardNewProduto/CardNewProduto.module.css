@@ -1,0 +1,91 @@
+.containerCard{
+    background-color: white;
+    width: calc(100% - 5%);
+    padding: 10px;
+    border-radius: 10px;
+    align-self: center;
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+}
+.headerCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.322);
+    padding-bottom: 25px;
+}
+.headerCard > span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.headerCard > button{
+    background: none;
+    border: none;
+    color: black;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding-right: 15px;
+}
+.containerCenter{
+    display: flex;
+    flex-direction: column;
+    
+}
+.containerCenter > form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+   align-items: start;
+    gap: 20px;
+    
+}
+.boxGridOne, .boxGridTwo{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.boxGridOne > input, .boxGridTwo > input {
+    padding: 7px;
+    border-radius: 7px;
+    font-size: 1.1rem;
+    border: 1px solid rgba(128, 128, 128, 0.164);
+    background-color: rgba(128, 128, 128, 0.164);
+
+}
+.boxStatus{
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.boxButton{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 10px;
+    gap: 12px;
+}
+.boxButton > button{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.164);
+    cursor: pointer;
+
+}
+.btnCancel{
+    width: 100px;
+}
+.btnSave{
+    width: 150px;
+    background-color: rgb(32, 32, 32);
+    color: white;
+}
+.boxGridOne > textarea {
+    height: 100px;
+}

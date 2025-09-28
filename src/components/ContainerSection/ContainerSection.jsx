@@ -5,8 +5,10 @@ import CardHorario from '../CardHorario/CardHorario';
 import CardProduto from '../CardProduto/CardProduto';
 import { useContext } from 'react';
 import CLIENTES from '../../store/context/ClientesContext';
+import PRODUTOS from '../../store/context/ProdutoContext';
 function ContainerSection({titleContainer, id, description}){
     const {cliente, setCliente} = useContext(CLIENTES)
+    const {infoProduct} = useContext(PRODUTOS)
     const dias = [
         {dia: 'Segunda-feira'},
         {dia: 'Terça-feira'},
@@ -27,6 +29,7 @@ function ContainerSection({titleContainer, id, description}){
             return <FaCartPlus />
         }
     }
+
     const card = ()=>{
         if(id === 'Clientes'){
             return cliente.map((c, index) => (
@@ -40,7 +43,10 @@ function ContainerSection({titleContainer, id, description}){
 
         }
         if(id === 'Produtos'){
-            return <CardProduto />
+            return infoProduct.map((p)=>{
+               return(
+                <CardProduto key={p.id} name={p.name} description={p.description} category={p.category} price={p.price} quantity={p.quantity} status={p.status} id={p.id}/>)
+            })
         }
     }
     return (

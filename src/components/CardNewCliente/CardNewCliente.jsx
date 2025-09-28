@@ -44,7 +44,7 @@ function CardNewCliente (){
                         <label htmlFor="">Telefone*</label>
                         <input type="text" onChange={(e)=>setTelefone(e.target.value)} value={telefone}/>
                         <label htmlFor="">Cadastro*</label>
-                        <input type="" placeholder='00/00/0000' onChange={(e)=> setCadastro(e.target.value)} value={cadastro}/>
+                        <input type="date" placeholder='00/00/0000' onChange={(e)=> setCadastro(e.target.value)} value={cadastro}/>
                     </div>
                 </form>
                 <div className={styles.btnArea}>

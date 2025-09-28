@@ -86,25 +86,25 @@ function Configuracoes(){
                                     ) :  <form action="" className={styles.editForm}>
                                     <label htmlFor="">Nome*</label>
                                     <input type="text"
-                                     placeholder={user.nome}
+                                     placeholder={'Barbeiro1'}
                                       onChange={(e)=> setNome(e.target.value)}
                                        className={styles.active}/>
 
                                     <label htmlFor="">E-mail*</label>
                                     <input type="text"
-                                     placeholder={user.email}
+                                     placeholder={'barbeiro1@barbearia.com'}
                                       onChange={(e)=>setEmail(e.target.value)}
                                       className={styles.active}
                                        />
                                     <label htmlFor="">Telefone*</label>
                                     <input type="text"
-                                     placeholder={user.tel}
+                                     placeholder={'(11) 99999-1111'}
                                       onChange={(e)=> setTel(e.target.value)}
                                       className={styles.active}
                                       />
                                     <label htmlFor="">Especialidade</label>
                                     <input type="text"
-                                     placeholder={user.espec}
+                                     placeholder={'Cortes Classicos'}
                                       onChange={(e)=>
                                        setEspec(e.target.value)}
                                        className={styles.active}
