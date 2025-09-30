@@ -19,6 +19,17 @@ function CardNewProduto(){
     const togleStatus = ()=>{
         setStatus((prev) => !prev)
     }
+    const saveEdit = () => {
+        if(price < 0 || quantity < 0){
+            return alert('Não é permitido valores negativos')
+        }
+        setInfoProduct(infoProduct.map(p =>
+            p.id === edit.id
+            ? { name, category, description, price, quantity, status: status ? 'Ativo' : 'Inativo' }
+            : p
+        ));
+        setEdit((prev) => !prev)
+    };
     const cancelEdit = ()=>{
          setEdit({statusContainerEdit: false})
     }
@@ -34,6 +45,7 @@ function CardNewProduto(){
             }
 
             setInfoProduct([...infoProduct, {name, category, description, price, quantity, status: status ? 'Ativo' : 'Inativo', id: uuidv4()}])
+            setShowContainer((prev)=> !prev)
             
         } catch (error) {
             alert(error.message)
@@ -72,7 +84,7 @@ function CardNewProduto(){
                             </select>
 
                         <label htmlFor="">Descrição</label>
-                        <textarea name="" id="" maxLength={20} onChange={(e)=> setDescription(e.target.value)} value={description}></textarea>
+                        <textarea name="" id="" maxLength={40} onChange={(e)=> setDescription(e.target.value)} value={description}></textarea>
                     </div>
             )
         }else{
@@ -187,12 +199,22 @@ function CardNewProduto(){
                     <button className={styles.btnCancel} onClick={edit.statusContainerEdit === true ? cancelEdit : cancelCreate}>
                         Cancelar
                     </button>
-                    <button className={styles.btnSave} onClick={salvar}>
+                    {edit.statusContainerEdit === true ? (
+                        <button className={styles.btnSave} onClick={saveEdit}>
+                        <span>
+                            <FaSave />
+                        </span>
+                        Salvar
+                    </button>
+                    ) : (
+                        <button className={styles.btnSave} onClick={salvar}>
                         <span>
                             <FaSave />
                         </span>
                         Criar Produto
                     </button>
+                    )}
+    
                 </div>
                 
            </div>

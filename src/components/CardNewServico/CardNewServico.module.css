@@ -1,0 +1,85 @@
+.containerCard{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(100% - 10%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    align-self: center;
+  
+}
+
+.containerContent > form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+
+}
+.containerContent > form > input, textarea {
+    border-radius: 10px;
+    width: calc(100% - 10%);
+    padding: 15px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.164);
+}
+.containerContent > form > textarea{
+    height: 80px;
+}
+.containerInput{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.boxInputOne, .boxInputTwo{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.boxInputOne > input, .boxInputTwo > input{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.164);
+}
+.containerStatus{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.boxStatus{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.containerButton{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: end;
+    padding: 10px;
+}
+.btnCancel{
+    padding: 8px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.164);
+}
+.btnSave{
+    display: flex;
+    gap: 5px;
+    padding: 8px;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(48, 48, 48);
+    color: white;
+    cursor: pointer;
+}

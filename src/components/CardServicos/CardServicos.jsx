@@ -1,13 +1,27 @@
+import { useContext } from 'react'
 import styles from './CardServicos.module.css'
 import { FaEdit, FaEye, FaEyeSlash, FaTrash } from 'react-icons/fa'
-function CardServicos (){
+import SERVICOS from '../../store/context/ServicosContext'
+function CardServicos ({name, description, price, duration, status, id}){
+    const { setShowContainerEdit } = useContext(SERVICOS)
+    const clickShowContainerEdit = ()=>{
+        setShowContainerEdit({id: 'editService', status: true})
+    }
+    const classe = ()=>{
+        if(status === true){
+            return styles.statusActive
+        }else{
+            return styles.statusOff
+        }
+    }
     return(
         <div className={styles.containerCardServico}>
             <div className={styles.containerButton}>
                 <button className={styles.eyeStatus}>
                     <FaEye />
                </button>
-               <button className={styles.btnEdit}>
+               <button className={styles.btnEdit}
+               onClick={clickShowContainerEdit}>
                 <span> <FaEdit /> </span>
                 Editar
                </button>
@@ -20,24 +34,24 @@ function CardServicos (){
             </div>
             <div className={styles.containerInfoServico}>
                 <div className={styles.topInfo}>
-                    <span>Corte de cabelo</span>
-                    <p>Cortes de cabelo masculino</p>
+                    <span>{name}</span>
+                    <p>{description}</p>
                 </div>
                 <div className={styles.bottomInfo}>
                     <p>
                     <span className={styles.value}>
-                        R$ 15,00
+                        R$ {price}
                     </span>
                     <span className={styles.min}>
-                    10min
+                    {duration}min
                     </span>
                     </p>
                         <div className={styles.infoDate}>
                             <span className={styles.date}>
                                 Criado em: XX/XX/XXXX
                             </span>
-                            <span className={styles.status}>
-                            Status
+                            <span className={classe()}>
+                            {status ? 'Ativo' : 'Inativo'}
                             </span>
                         </div>
                 </div>

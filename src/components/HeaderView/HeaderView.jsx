@@ -3,8 +3,10 @@ import styles from './HeaderView.module.css'
 import { useContext, useEffect, useState } from 'react'
 import CLIENTES from '../../store/context/ClientesContext'
 import PRODUTOS from '../../store/context/ProdutoContext'
+import SERVICOS from '../../store/context/ServicosContext'
 function HeaderView({ headerTitle, btnText, id}){
-    console.log(id)
+   
+    const { setShowContainerEdit } = useContext(SERVICOS)
     const {setAddClienteArea} = useContext(CLIENTES)
     const {setShowContainer} = useContext(PRODUTOS)
     const icon = ()=>{
@@ -35,7 +37,13 @@ function HeaderView({ headerTitle, btnText, id}){
                 {btnText}
                 </button>
             );
-
+            case "Servico":
+                return(
+                    <button onClick={clickServico} >
+                        <span>{icon()}</span>
+                        {btnText}
+                    </button>
+                )
             default:
             return null;
         }
@@ -46,6 +54,9 @@ function HeaderView({ headerTitle, btnText, id}){
     }
     const clickCliente = ()=>{
             setAddClienteArea(prev => !prev)
+    }
+    const clickServico = ()=>{
+        setShowContainerEdit({id: 'newService', status: true})
     }
     return(
           <div className={styles.topBox}>

@@ -12,6 +12,7 @@ import Configuracoes from './pages/Configuracoes/Configuracoes.jsx'
 import { ClientesProvider } from './store/context/ClientesContext.jsx'
 import { UserProvider } from './store/context/UserContext.jsx'
 import { ProdutosProvider } from './store/context/ProdutoContext.jsx'
+import { ServicosProvider } from './store/context/ServicosContext.jsx'
 
 
 const rotas = createBrowserRouter([
@@ -69,12 +70,14 @@ const rotas = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ProdutosProvider>
-      <UserProvider>
-        <ClientesProvider>
-          <RouterProvider router={rotas}/>
-        </ClientesProvider>
-      </UserProvider>
-    </ProdutosProvider>
+    <ServicosProvider>
+      <ProdutosProvider>
+        <UserProvider>
+          <ClientesProvider>
+            <RouterProvider router={rotas}/>
+          </ClientesProvider>
+        </UserProvider>
+      </ProdutosProvider>
+    </ServicosProvider>
   </StrictMode>,
 )
