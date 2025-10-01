@@ -56,7 +56,7 @@ function HeaderView({ headerTitle, btnText, id}){
             setAddClienteArea(prev => !prev)
     }
     const clickServico = ()=>{
-        setShowContainerEdit({id: 'newService', status: true})
+        setShowContainerEdit({typeContainer: 'newService', status: true})
     }
     return(
           <div className={styles.topBox}>

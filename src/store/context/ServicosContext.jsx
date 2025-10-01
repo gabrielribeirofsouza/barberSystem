@@ -4,8 +4,9 @@ const SERVICOS = createContext()
 export const ServicosProvider = ({ children }) =>{
     const [serviceList, setServiceList] = useState([])
     const [showContainerEdit, setShowContainerEdit] = useState({
+        status: false,
         id: '',
-        status: false
+        typeContainer: ''
     })
     const value = {
         showContainerEdit, setShowContainerEdit, serviceList, setServiceList

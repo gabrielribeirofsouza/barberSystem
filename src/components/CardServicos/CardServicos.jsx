@@ -5,7 +5,7 @@ import SERVICOS from '../../store/context/ServicosContext'
 function CardServicos ({name, description, price, duration, status, id}){
     const { setShowContainerEdit } = useContext(SERVICOS)
     const clickShowContainerEdit = ()=>{
-        setShowContainerEdit({id: 'editService', status: true})
+        setShowContainerEdit({typeContainer: 'editService', status: true, id})
     }
     const classe = ()=>{
         if(status === true){

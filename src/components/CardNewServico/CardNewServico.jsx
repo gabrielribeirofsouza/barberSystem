@@ -1,19 +1,26 @@
 import { FaSave } from 'react-icons/fa'
 import styles from './CardNewServico.module.css'
-import { useContext, useState } from 'react'
+import { useContext,  useEffect,  useState } from 'react'
 import SERVICOS from '../../store/context/ServicosContext'
+import { v4 as uuidv4 } from 'uuid';
 function CardNewServico({id}){
 
-    const { setShowContainerEdit, serviceList, setServiceList } = useContext(SERVICOS)
+    const { showContainerEdit, setShowContainerEdit, serviceList, setServiceList } = useContext(SERVICOS)
    
     const [nameService, setNameService] = useState('')
     const [descriptionService, setDescriptionService] = useState('')
     const [priceService, setPriceService] = useState('')
     const [durationService, setDurationService] = useState('')
     const [statusService, setStatusService] = useState(false)
+   
 
     const cancelEdit = ()=>{
-        setShowContainerEdit({id: '', status: false})
+
+        setShowContainerEdit({
+        status: false,
+        id: '',
+        typeContainer: ''
+        })
     }
     const title = ()=>{
         if(id === 'newService'){
@@ -40,7 +47,8 @@ function CardNewServico({id}){
                 description: descriptionService,
                 price: priceService,
                 duration: durationService,
-                status: statusService
+                status: statusService,
+                id: uuidv4()
             }])
             
         } catch (error) {
@@ -55,10 +63,64 @@ function CardNewServico({id}){
         setStatusService(false)
         setShowContainerEdit({id: '', status: false})
     }
-    return(
-        <div className={styles.containerCard}>
-            {title()}
-            <div className={styles.containerContent}>
+    const editService = ()=>{
+    
+        setServiceList(serviceList.map( i =>
+        i.id === showContainerEdit.id ? {
+        name: nameService,
+        description: descriptionService,
+        price: priceService,
+        duration: durationService,
+        status: statusService
+        }:
+        i
+        ))
+        setShowContainerEdit({
+        status: false,
+        id: '',
+        typeContainer: ''
+        })
+    }
+    const renderButton = ()=>{
+        if (!showContainerEdit?.typeContainer) return null;
+        
+        if (showContainerEdit?.typeContainer === 'newService') {
+            return (
+            <button className={styles.btnSave} onClick={saveService}>
+                <span><FaSave /></span>
+                Criar Serviço
+            </button>
+            );
+        }
+
+        if (showContainerEdit?.typeContainer === 'editService') {
+            return (
+            <button className={styles.btnSave} onClick={editService}>
+                <span><FaSave /></span>
+                Editar Serviço
+            </button>
+            );
+        }
+
+        return null;
+      
+    }
+    const inputForm = ()=>{
+        if( showContainerEdit.typeContainer === 'editService'){
+            return(
+                    <form action="">
+
+                    <label htmlFor="">Nome do Serviço*</label>
+                    <input type="text" placeholder='Ex: Corte Social' required onChange={(e)=> setNameService(e.target.value)} value={nameService}/>
+
+                    <label htmlFor="">Descrição</label>
+                    <textarea name="" onChange={(e)=> setDescriptionService(e.target.value)} id="" placeholder='Descreva o seriço oferecido' value={ descriptionService}></textarea>
+
+                </form>
+            )
+        }
+        if(showContainerEdit.typeContainer === 'newService'){
+            return(
                 <form action="">
 
                     <label htmlFor="">Nome do Serviço*</label>
@@ -68,8 +130,29 @@ function CardNewServico({id}){
                     <textarea name="" onChange={(e)=> setDescriptionService(e.target.value)} id="" placeholder='Descreva o seriço oferecido' ></textarea>
 
                 </form>
-            </div>
-                    <div className={styles.containerInput}>
+            )
+        }
+     
+    }
+    const inputFormTwo = ()=>{
+        if( showContainerEdit.typeContainer === 'editService'){
+            return(
+                  <div className={styles.containerInput}>
+                        <div className={styles.boxInputOne}>
+                            <label htmlFor="">Preço {'(R$)'}*</label>
+                            <input type="number" placeholder='0,00' onChange={(e)=> setPriceService(e.target.value)}
+                            value={ priceService}/>
+                        </div>
+                        <div className={styles.boxInputTwo}>
+                            <label htmlFor="">Duração {'(minutos)'}*</label>
+                            <input type="number" placeholder='0' onChange={(e)=> setDurationService(e.target.value)} value={durationService}/>
+                        </div>
+                </div>
+            )
+        }
+         if(showContainerEdit.typeContainer === 'newService'){
+            return(
+                <div className={styles.containerInput}>
                         <div className={styles.boxInputOne}>
                             <label htmlFor="">Preço {'(R$)'}*</label>
                             <input type="number" placeholder='0,00' onChange={(e)=> setPriceService(e.target.value)}/>
@@ -78,12 +161,49 @@ function CardNewServico({id}){
                             <label htmlFor="">Duração {'(minutos)'}*</label>
                             <input type="number" placeholder='0' onChange={(e)=> setDurationService(e.target.value)}/>
                         </div>
-                    </div>
-            <div className={styles.containerStatus}>
+                </div>
+            )
+         }
+    }
+    const boxStatus = ()=>{
+        if( showContainerEdit.typeContainer === 'editService'){
+            return(
                 <div className={styles.boxStatus}>
                     <input type="checkbox" checked={statusService} onClick={togleStatus}/>
                     <span>Serviço ativo</span>
                 </div>
+            )
+        }
+        if(showContainerEdit.typeContainer === 'newService'){
+            return(
+                <div className={styles.boxStatus}>
+                    <input type="checkbox" checked={statusService} onClick={togleStatus}/>
+                    <span>Serviço ativo</span>
+                </div>
+            )
+        }
+    }
+    useEffect(() => {
+  if (showContainerEdit.typeContainer === 'editService') {
+    const valueCardEdit = serviceList.find(i => i.id === showContainerEdit.id);
+    if (valueCardEdit) {
+      setNameService(valueCardEdit.name);
+      setDescriptionService(valueCardEdit.description);
+      setPriceService(valueCardEdit.price);
+      setDurationService(valueCardEdit.duration);
+      setStatusService(valueCardEdit.status);
+    }
+  }
+}, [showContainerEdit, serviceList]);
+    return(
+        <div className={styles.containerCard}>
+            {title()}
+            <div className={styles.containerContent}>
+                {inputForm()}
+            </div>
+                {inputFormTwo()}
+            <div className={styles.containerStatus}>
+                {boxStatus()}
                 <span>Desmarque para este serviço temporariamente desativado</span>
             </div>
             <div className={styles.containerButton}>
@@ -91,12 +211,10 @@ function CardNewServico({id}){
                 onClick={cancelEdit}>
                     Cancelar
                 </button>
-                <button className={styles.btnSave} onClick={saveService}>
-                    <span><FaSave /></span>
-                    Criar Serviço
-                </button>
+            {renderButton()}
+               
             </div>
         </div>
-    )
-}
+    )}
+
 export default CardNewServico
