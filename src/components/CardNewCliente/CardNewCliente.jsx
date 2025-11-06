@@ -2,8 +2,9 @@ import { FaSave } from 'react-icons/fa'
 import styles from './CardNewCliente.module.css'
 import { useContext, useState } from 'react'
 import CLIENTES from '../../store/context/ClientesContext'
+import { v4 as uuidv4 } from 'uuid'
 function CardNewCliente (){
-    const { cliente, setCliente, setAddClienteArea } = useContext(CLIENTES)
+    const { cliente, setCliente, setAddClienteArea, adicionarCliente } = useContext(CLIENTES)
 
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
@@ -13,17 +14,29 @@ function CardNewCliente (){
     const cancelar = ()=>{
         setAddClienteArea((prev)=> !prev)
     }
-    const salvar = ()=>{
+    const salvar = async()=>{
         try {
             if(nome.trim() === '' || email.trim() === '' || cadastro.trim() === '' || telefone.trim() === '' ){
                 throw new Error('Preencha todos os campos')
             }
-        setCliente([...cliente, {nome: nome, email: email, cadastro: cadastro, telefone: telefone}])
+         const novoCliente = {
+                nome_cliente: nome,
+                email_cliente: email,
+                telefone_cliente: telefone,
+                data_cadastro: cadastro
+            };
+            await adicionarCliente(novoCliente);
+           
         setNome('');
         setEmail('');
         setTelefone('');
         setCadastro('');
-            
+        setAddClienteArea((prev)=> !prev)
+        
+        const res = await fetch("http://localhost:4000/api/clientes");
+        const listaAtualizada = await res.json();
+        setCliente(listaAtualizada);
+
         } catch (error) {
             alert(error.message)
         }

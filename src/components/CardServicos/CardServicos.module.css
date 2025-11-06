@@ -17,8 +17,15 @@
     align-items: center;
     gap: 10px;
 }
-.eyeStatus{
+.eyeStatusActive{
     color: green;
+    font-size: 1.1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.eyeStatusOff{
+    color: red;
     font-size: 1.1rem;
     background: none;
     border: none;

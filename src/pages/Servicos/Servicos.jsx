@@ -16,8 +16,8 @@ function Servicos(){
             <div className={styles.containerContent}>
                 <HeaderView headerTitle={'Gerencie os serviços oferecidos em sua barbearia'} btnText={'Novo Serviço'} id={'Servico'}/>
                 {showContainerEdit.status === false ? serviceList.map((i)=>{
-                    return <CardServicos key={i.id} name={i.name} description={i.description} price={i.price} duration={i.duration} status={i.status} id={i.id} />
-                }) : <CardNewServico id={showContainerEdit.typeContainer}/>}
+                    return <CardServicos key={i.id_servico} nome_servico={i.nome_servico} descricao_servico={i.descricao_servico} preco_servico={i.preco_servico} duracao_servico={i.duracao_servico} status_servico={i.status_servico} id_servico={i.id_servico} />
+                }) : <CardNewServico />}
            
 
             </div>

@@ -33,7 +33,7 @@ function ContainerSection({titleContainer, id, description}){
     const card = ()=>{
         if(id === 'Clientes'){
             return cliente.map((c, index) => (
-                 <CardCLiente key={index} nome={c.nome} status={c.status} email={c.email} telefone={c.telefone} cadastro={c.cadastro}/>
+                 <CardCLiente key={c.id_cliente} nome={c.nome_cliente} status={c.status} email={c.email_cliente} telefone={c.telefone_cliente} cadastro={c.data_cadastro} id={c.id_cliente}/>
                 ))
         }
         if(id === 'Horarios'){

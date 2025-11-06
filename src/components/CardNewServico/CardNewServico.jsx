@@ -3,32 +3,32 @@ import styles from './CardNewServico.module.css'
 import { useContext,  useEffect,  useState } from 'react'
 import SERVICOS from '../../store/context/ServicosContext'
 import { v4 as uuidv4 } from 'uuid';
-function CardNewServico({id}){
+function CardNewServico(){
 
-    const { showContainerEdit, setShowContainerEdit, serviceList, setServiceList } = useContext(SERVICOS)
+    const { showContainerEdit, setShowContainerEdit, serviceList, criarServico, editarServico} = useContext(SERVICOS)
    
     const [nameService, setNameService] = useState('')
     const [descriptionService, setDescriptionService] = useState('')
     const [priceService, setPriceService] = useState('')
     const [durationService, setDurationService] = useState('')
-    const [statusService, setStatusService] = useState(false)
+    const [statusService, setStatusService] = useState(true)
    
 
     const cancelEdit = ()=>{
 
         setShowContainerEdit({
         status: false,
-        id: '',
+        id_servico: '',
         typeContainer: ''
         })
     }
     const title = ()=>{
-        if(id === 'newService'){
+        if(showContainerEdit.typeContainer=== 'newService'){
             return (
                 <h1>Novo Serviço</h1>
             )
         }
-        if (id === 'editService'){
+        if (showContainerEdit.typeContainer === 'editService'){
             return(
                 <h1>Editar Serviço</h1>
             )
@@ -37,50 +37,74 @@ function CardNewServico({id}){
     const togleStatus = ()=>{
         setStatusService((prev)=> !prev)
     }
-    const saveService = ()=>{
-        try {
-            if(nameService.trim() === '' ||  priceService.trim() === '' || durationService.trim() === ''){
-                throw new Error('[ERROR] Preencha todos os campos obrigatorios e tente novamente')
-            }
-            setServiceList([...serviceList, {
-                name: nameService,
-                description: descriptionService,
-                price: priceService,
-                duration: durationService,
-                status: statusService,
-                id: uuidv4()
-            }])
-            
-        } catch (error) {
-            alert(error.message
+    const saveService  = async ()=>{
+          try {
+    if (
+      nameService.trim() === '' ||
+      priceService.trim() === '' ||
+      durationService.trim() === ''
+    ) {
+      throw new Error('[ERROR] Preencha todos os campos obrigatórios e tente novamente');
+    }
 
-            )
-        }
+    const novoServico = {
+      nome_servico: nameService,
+      descricao_servico: descriptionService,
+      preco_servico: priceService,
+      duracao_servico: durationService,
+      status_servico: statusService,
+    };
+
+    await criarServico(novoServico); 
+    setNameService('');
+    setDescriptionService('');
+    setPriceService('');
+    setDurationService('');
+    setStatusService(true);
+    setShowContainerEdit({typeContainer: '', id_servico: '', status: false})
+  } catch (error) {
+    console.error(error);
+  }
         setNameService('')
         setDescriptionService('')
         setPriceService('')
         setDurationService('')
-        setStatusService(false)
-        setShowContainerEdit({id: '', status: false})
+        setStatusService(true)
+        setShowContainerEdit({typeContainer: '', id_servico: '', status: false})
+    };
+  
+const editService = async () => {
+  try {
+    if (
+      nameService.trim() === '' ||
+      durationService.trim() === ''
+    ) {
+      throw new Error('[ERROR] Preencha todos os campos obrigatórios e tente novamente');
     }
-    const editService = ()=>{
-    
-        setServiceList(serviceList.map( i =>
-        i.id === showContainerEdit.id ? {
-        name: nameService,
-        description: descriptionService,
-        price: priceService,
-        duration: durationService,
-        status: statusService
-        }:
-        i
-        ))
-        setShowContainerEdit({
-        status: false,
-        id: '',
-        typeContainer: ''
-        })
-    }
+
+    const updatedData = {
+      nome_servico: nameService,
+      descricao_servico: descriptionService,
+      preco_servico: priceService,
+      duracao_servico: durationService,
+      status_servico: statusService,
+    };
+
+    await editarServico(showContainerEdit.id_servico, updatedData); 
+
+    setShowContainerEdit({ status: false, id_servico: '', typeContainer: '' });
+
+    setNameService('');
+    setDescriptionService('');
+    setPriceService('');
+    setDurationService('');
+    setStatusService(true);
+  } catch (error) {
+    console.error(error);
+    alert('Falha ao editar o serviço, tente novamente.');
+  }
+};
+
     const renderButton = ()=>{
         if (!showContainerEdit?.typeContainer) return null;
         
@@ -185,13 +209,13 @@ function CardNewServico({id}){
     }
     useEffect(() => {
   if (showContainerEdit.typeContainer === 'editService') {
-    const valueCardEdit = serviceList.find(i => i.id === showContainerEdit.id);
+    const valueCardEdit = serviceList.find(i => i.id_servico === showContainerEdit.id_servico);
     if (valueCardEdit) {
-      setNameService(valueCardEdit.name);
-      setDescriptionService(valueCardEdit.description);
-      setPriceService(valueCardEdit.price);
-      setDurationService(valueCardEdit.duration);
-      setStatusService(valueCardEdit.status);
+      setNameService(valueCardEdit.nome_servico);
+    setDescriptionService(valueCardEdit.descricao_servico);
+    setPriceService(valueCardEdit.preco_servico);
+    setDurationService(valueCardEdit.duracao_servico);
+    setStatusService(valueCardEdit.status_servico);
     }
   }
 }, [showContainerEdit, serviceList]);
