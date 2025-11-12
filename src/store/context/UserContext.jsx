@@ -1,19 +1,53 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from 'react';
 
-const USER = createContext()
+const UserContext = createContext();
 
-export const UserProvider = ({children}) =>{
-    const [user, setUser] = useState({
-        nome: 'Barbeiro1',
-        email: 'barbeiro1@barbearia.com',
-        tel: '(11) 99999-1111',
-        espec: 'Cortes Classicos'
-    })
-    const value = {user, setUser}
-    return(
-        <USER.Provider value={value}>
-            {children}
-        </USER.Provider>
-    )
+export function UserProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // 
+
+  
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+   
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    setLoading(false); 
+  }, []);
+
+  
+  const login = (userData) => {
+  // normaliza o tipo e o nome
+  const normalizedUser = {
+    ...userData,
+    tipo: userData.tipo?.toLowerCase()
+  };
+
+  setUser(normalizedUser);
+  localStorage.setItem('user', JSON.stringify(normalizedUser));
+};
+
+  
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+  };
+
+ 
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
+
+  return (
+    <UserContext.Provider value={{ user, login, logout, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
 }
-export default USER
+
+export function useUser() {
+  return useContext(UserContext);
+}
+
+export default UserContext;

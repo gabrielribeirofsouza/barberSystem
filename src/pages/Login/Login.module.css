@@ -1,0 +1,35 @@
+*{
+    text-decoration: none;
+}
+a { 
+    color: black;
+}
+.container{
+    max-width: 800px;
+    margin: 300px auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-direction: column;
+}
+.containerForm > form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.containerForm{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.containerForm > button {
+    padding: 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.144);
+    cursor: pointer;
+    
+}

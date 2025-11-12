@@ -21,12 +21,12 @@ function Configuracoes(){
              if(nome.trim() === '' || email.trim() === '' || tel.trim() === '' || espec.trim() === ''){
                 throw new Error('Preencha todos os campos')
              }
-        setUser({
+        setUser((prev) =>({ ...prev,
             nome: nome,
             email: email,
             tel: tel,
             espec: espec
-        })
+        }))
             
         } catch (error) {
             alert(error.message)

@@ -2,13 +2,13 @@ import { FaClock, FaEdit, FaSave } from "react-icons/fa";
 import styles from './CardHorario.module.css'
 import {useState } from "react";
 
-function CardHorario ({dia}){
+function CardHorario ({dia, inicio: init, fim: end, status: initialStatus, onSave}){
 
-    const [inicio, setInicio] = useState('09:00')
-    const [fim, setFim] = useState ('18:00')
-    const [status, setStatus] = useState(true)
-    const [statusMsg, setStatusMsg] = useState('Ativo')
-    const [showContainerEdit, setShowContainerEdit] = useState(false)
+     const [inicio, setInicio] = useState(init || '09:00');
+    const [fim, setFim] = useState(end || '18:00');
+    const [status, setStatus] = useState(initialStatus ?? true);
+    const [statusMsg, setStatusMsg] = useState(status ? 'Ativo' : 'Inativo');
+    const [showContainerEdit, setShowContainerEdit] = useState(false);
 
   const handleStatus = ()=>{
     setStatus((prev) => {
@@ -18,11 +18,17 @@ function CardHorario ({dia}){
     })
 
   }
-
+  
   const click = ()=>{
     setShowContainerEdit((prev) => !prev)
   }
-
+ 
+const handleSave = async () => {
+        if (onSave) {
+            await onSave({ inicio, fim, status });
+        }
+        setShowContainerEdit(false);
+    };
     return (
         <div className={styles.containerCardHorario}>
             <div className={styles.dateContainer}>
@@ -50,7 +56,7 @@ function CardHorario ({dia}){
                         <button onClick={click}>
                             Cancelar
                         </button>
-                        <button className={styles.btnSave} onClick={click}>
+                        <button className={styles.btnSave} onClick={handleSave}>
                             <span>
                                 <FaSave />
                             </span>

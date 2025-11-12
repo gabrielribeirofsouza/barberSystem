@@ -4,10 +4,12 @@ import styles from './Home.module.css'
 import CardModal from "../../components/CardModal/CardModal";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import USER from "../../store/context/UserContext";
+import UserContext from "../../store/context/UserContext";
 function Home() {
-    const {user} = useContext(USER)
-
+    const {user} = useContext(UserContext)
+ if (!user) {
+    return <p>Carregando...</p>; 
+  }
     return ( 
     <div className={styles.container}>
         <aside>

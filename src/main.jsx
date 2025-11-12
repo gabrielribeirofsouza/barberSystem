@@ -13,16 +13,30 @@ import { ClientesProvider } from './store/context/ClientesContext.jsx'
 import { UserProvider } from './store/context/UserContext.jsx'
 import { ProdutosProvider } from './store/context/ProdutoContext.jsx'
 import { ServicosProvider } from './store/context/ServicosContext.jsx'
+import Login from './pages/Login/Login.jsx'
+import RoleProtectedRoute from './components/RoleProtectedRoute/RoleProtectedRoute.jsx'
 
 
 const rotas = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
+    element: <Login />
+  },
+  {
+    path: '/home',
+    element:(
+      <RoleProtectedRoute>
+        <Home />
+      </RoleProtectedRoute>
+    ) 
   },
   {
     path: '/clientes',
-    element: <Clientes />,
+    element: (
+      <RoleProtectedRoute allowed={['admin']}>
+        <Clientes />,
+      </RoleProtectedRoute>
+    ),
     children: [{
       path: '/clientes',
       element: <Sidebar />
@@ -30,7 +44,11 @@ const rotas = createBrowserRouter([
   },
   {
     path: '/horarios',
-    element: <Horarios />,
+    element:(
+      <RoleProtectedRoute  allowed={['barbeiro']}>
+       <Horarios />
+      </RoleProtectedRoute>
+    ),
     children: [{
       path: '/horarios',
       element: <Sidebar />
@@ -38,7 +56,12 @@ const rotas = createBrowserRouter([
   },
   {
     path: '/agendamentos',
-    element: <Agendamentos />,
+    element: (
+      <RoleProtectedRoute allowed={['barbeiro']}>
+          <Agendamentos />
+      </RoleProtectedRoute>
+    
+  ),
     children: [{
       path: '/agendamentos',
       element: <Sidebar />
@@ -46,7 +69,11 @@ const rotas = createBrowserRouter([
   },
   {
     path: '/servicos',
-    element: <Servicos />,
+    element: (
+      <RoleProtectedRoute allowed={['admin']}>
+        <Servicos />
+      </RoleProtectedRoute>
+  ),
     children: [{
       path: '/servicos',
       element: <Sidebar />
@@ -54,14 +81,23 @@ const rotas = createBrowserRouter([
   },
   {
     path: '/produtos',
-    element: <Produtos />,
+    element: (
+    <RoleProtectedRoute allowed={['admin']}>
+      <Produtos />
+    </RoleProtectedRoute>
+
+    ),
     children: [{
       path: '/produtos',
       element: <Sidebar/>
     }]
   },{
     path: '/configuracoes',
-    element: <Configuracoes />,
+    element: (
+      <RoleProtectedRoute allowed={['admin','barbeiro']}>
+        <Configuracoes />
+      </RoleProtectedRoute>
+  ),
     children: [{
       path: '/configuracoes',
       element: <Sidebar/>
@@ -70,14 +106,15 @@ const rotas = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ServicosProvider>
-      <ProdutosProvider>
-        <UserProvider>
-          <ClientesProvider>
-            <RouterProvider router={rotas}/>
-          </ClientesProvider>
-        </UserProvider>
-      </ProdutosProvider>
-    </ServicosProvider>
+    <UserProvider>
+        <ServicosProvider>
+          <ProdutosProvider>
+              <ClientesProvider>
+                <RouterProvider router={rotas}/>
+              </ClientesProvider>
+          </ProdutosProvider>
+        </ServicosProvider>
+       
+   </UserProvider>
   </StrictMode>,
 )

@@ -4,15 +4,14 @@ import { useContext } from 'react'
 
 import PRODUTOS from '../../store/context/ProdutoContext'
 function CardProduto({name, description, category, price, quantity, status, id}){
-    const {edit, setEdit, showContainer, infoProduct, setInfoProduct} = useContext(PRODUTOS)
+    const {edit, setEdit, showContainer,  removerProduto} = useContext(PRODUTOS)
     const editar = ()=>{
         setEdit({id, statusContainerEdit: true})
-    }
-    const excluir = () => {
-        const updatedProducts = infoProduct.filter(p => p.id !== id);
-        
-        setInfoProduct(updatedProducts);
     };
+    const excluir = () => {
+  if (!window.confirm('Deseja realmente excluir este produto?')) return;
+  removerProduto(id);
+};
     const classe = ()=>{
         if(edit.statusContainerEdit === true || showContainer === true)
         {
@@ -25,7 +24,9 @@ function CardProduto({name, description, category, price, quantity, status, id})
             <div className={styles.topContent}>
                 <div className={styles.infoTopContent}>
                     <p>{name}</p>
-                    <span className={styles.statusProduct}>{status}</span>
+                     <span className={styles.statusProduct}>
+                    {status === 1 ? 'Ativo' : 'Inativo'}
+                    </span>
                 </div>
                 <div className={styles.productDescriptionContainer}>
                     <span className={styles.productCategory}>{category}</span>

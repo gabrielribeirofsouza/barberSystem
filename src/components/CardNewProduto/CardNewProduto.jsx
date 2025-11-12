@@ -4,7 +4,7 @@ import styles from './CardNewProduto.module.css'
 import { useContext, useEffect, useState } from 'react'
 import PRODUTOS from '../../store/context/ProdutoContext'
 function CardNewProduto(){
-    const {infoProduct, setInfoProduct, setShowContainer, edit, setEdit} = useContext(PRODUTOS)
+    const { infoProduct, setShowContainer, edit, setEdit, adicionarProduto, editarProduto, setInfoProduct } = useContext(PRODUTOS);
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
@@ -13,23 +13,50 @@ function CardNewProduto(){
     const [status, setStatus] = useState(false)
     
     const searchProduct = () => {
-        return infoProduct.find(item => item.id === edit.id);
+        return infoProduct.find(item => item.id_produto === edit.id);
     }
 
     const togleStatus = ()=>{
         setStatus((prev) => !prev)
     }
-    const saveEdit = () => {
-        if(price < 0 || quantity < 0){
-            return alert('Não é permitido valores negativos')
-        }
-        setInfoProduct(infoProduct.map(p =>
-            p.id === edit.id
-            ? { name, category, description, price, quantity, status: status ? 'Ativo' : 'Inativo' }
-            : p
-        ));
-        setEdit((prev) => !prev)
-    };
+    const saveEdit = async () => {
+  if (price < 0 || quantity < 0) {
+    return alert('Não é permitido valores negativos');
+  }
+
+  const produtoAtualizado = {
+    nome_produto: name,
+    categoria_produto: category,
+    descricao_produto: description,
+    preco_produto: price,
+    estoque_produto: quantity,
+    status_produto: status ? 1 : 0
+  };
+
+  try {
+    const res = await fetch(`http://localhost:4000/api/produtos/${edit.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(produtoAtualizado),
+    });
+
+    if (!res.ok) throw new Error('Erro ao atualizar produto');
+
+    // Atualiza o estado local com os novos dados
+    setInfoProduct(
+      infoProduct.map((p) =>
+        p.id_produto === edit.id
+          ? { ...p, ...produtoAtualizado }
+          : p
+      )
+    );
+
+    // Fecha o container de edição
+    setEdit({ statusContainerEdit: false });
+  } catch (error) {
+    alert(error.message);
+  }
+};
     const cancelEdit = ()=>{
          setEdit({statusContainerEdit: false})
     }
@@ -38,27 +65,56 @@ function CardNewProduto(){
        
     }
 
-    const salvar = ()=>{
-        try {
-            if(name.trim() === '' || category === '' || category === 'default' || description.trim() === '' || price.trim() === '' || quantity.trim() === ''){
-                throw new Error('Preencha todos os campos')
-            }
-
-            setInfoProduct([...infoProduct, {name, category, description, price, quantity, status: status ? 'Ativo' : 'Inativo', id: uuidv4()}])
-            setShowContainer((prev)=> !prev)
-            
-        } catch (error) {
-            alert(error.message)
-        }
-        
-        setName('')
-        setCategory('')
-        setDescription('')
-        setPrice('')
-        setQuantity('')
-        setStatus(false)
+    const salvar = async () => {
+  try {
+    if (
+      name.trim() === '' ||
+      category === '' ||
+      category === 'default' ||
+      description.trim() === '' ||
+      price.trim() === '' ||
+      quantity.trim() === ''
+    ) {
+      throw new Error('Preencha todos os campos');
     }
 
+    // Monta o corpo no formato que o backend espera
+    const novoProduto = {
+      nome_produto: name,
+      categoria_produto: category,
+      descricao_produto: description,
+      preco_produto: price,
+      estoque_produto: quantity,
+      status_produto: status ? 1 : 0,
+    };
+
+    const res = await fetch('http://localhost:4000/api/produtos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(novoProduto),
+    });
+
+    if (!res.ok) throw new Error('Erro ao criar produto');
+
+    const data = await res.json();
+    console.log('Resposta da API ao criar produto:', data);
+
+    // Atualiza o estado local com o retorno
+    setInfoProduct([...infoProduct, { ...novoProduto, id_produto: data.insertId }]);
+    setShowContainer((prev) => !prev);
+
+    // Limpa o formulário
+    setName('');
+    setCategory('');
+    setDescription('');
+    setPrice('');
+    setQuantity('');
+    setStatus(false);
+
+  } catch (error) {
+    alert(error.message);
+  }
+};
     const boxGridOne = ()=>{
         if(edit.statusContainerEdit === true){
             return (
@@ -168,20 +224,19 @@ function CardNewProduto(){
             )
         }
     }
-    useEffect(()=>{
-        if(edit.statusContainerEdit === true){
-          const produto =  searchProduct()
-                  if(produto){
-            setName(produto.name);
-            setCategory(produto.category);
-            setDescription(produto.description);
-            setPrice(produto.price);
-            setQuantity(produto.quantity);
-            setStatus(produto.status);
-        }
-
-        }
-    }, [edit, infoProduct])
+      useEffect(() => {
+    if (edit.statusContainerEdit === true) {
+      const produto = searchProduct();
+      if (produto) {
+        setName(produto.nome_produto);
+        setCategory(produto.categoria_produto);
+        setDescription(produto.descricao_produto);
+        setPrice(produto.preco_produto);
+        setQuantity(produto.estoque_produto);
+        setStatus(produto.status_produto === 1);
+      }
+    }
+  }, [edit, infoProduct]);
     
     return(
         <div className={styles.containerCard}>
