@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:4000/api/horarios';
+const BASE_URL = import.meta.env.VITE_API_URL;
+const API_URL = `${BASE_URL}/api/horarios`;
+
 
 export async function getHorarios(id_barbeiro) {
   const res = await fetch(`${API_URL}/${id_barbeiro}`);

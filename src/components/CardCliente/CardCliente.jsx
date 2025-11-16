@@ -3,7 +3,7 @@ import styles from './CardCliente.module.css'
 import { useContext } from "react";
 import CLIENTES from "../../store/context/ClientesContext";
 function CardCLiente ({nome, status, email, telefone, cadastro, id}){
-    console.log("🧩 CardCliente recebeu ID:", id, "Nome:", nome);
+   
     const {cliente, setCliente} = useContext(CLIENTES)
 
     const excluir = async () => {
