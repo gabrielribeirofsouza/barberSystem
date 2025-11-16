@@ -38,6 +38,7 @@ if (!res.ok) throw new Error(data.error || 'Erro ao fazer login');
       setErro(err.message);
     }
   };
+  console.log("API URL:", import.meta.env.VITE_API_URL);
 
     return(
         <div className={styles.container}>
