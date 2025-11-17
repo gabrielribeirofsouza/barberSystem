@@ -76,25 +76,7 @@ const editarServico = async (id_servico, servicoAtualizado) => {
       console.log(serviceList)
       setServiceList((prev) => prev.filter((s) => s.id_servico !== id_servico));
       console.log(serviceList)
-      const carregarServicos = async () => {
-      try {
-        const data = await listarServicos();
-        const formatados = data.map(s => ({
-          id_servico: s.id_servico,
-          nome_servico: s.nome_servico,
-          descricao_servico: s.descricao_servico,
-          preco_servico: s.preco_servico,
-          duracao_servico: s.duracao_servico,
-          status_servico: s.status_servico,
-        }));
-        setServiceList(formatados);
-        return formatados;
-      } catch (error) {
-        console.error("Erro ao carregar serviços:", error);
-      }
-    };
-
-    carregarServicos();
+      
     } catch (error) {
       console.error("Erro ao excluir serviço:", error);
     }
