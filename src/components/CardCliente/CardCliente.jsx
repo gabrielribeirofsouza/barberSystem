@@ -12,12 +12,12 @@ function CardCLiente ({nome, status, email, telefone, cadastro, id}){
 
   try {
 
-   const response = await fetch(`http://back-end-systembarber-production-9e00.up.railway.app/api/clientes/${id}`, {
+   const response = await fetch(`https://back-end-systembarber-production-9e00.up.railway.app/api/clientes/${id}`, {
   method: "DELETE",
 });
 
     if (response.ok) {
-        const res = await fetch("http://back-end-systembarber-production-9e00.up.railway.app/api/clientes");
+        const res = await fetch("https://back-end-systembarber-production-9e00.up.railway.app/api/clientes");
         const listaAtualizada = await res.json();
          setCliente(listaAtualizada);
       alert("Cliente excluído com sucesso!");

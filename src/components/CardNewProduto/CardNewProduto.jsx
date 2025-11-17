@@ -34,7 +34,7 @@ function CardNewProduto(){
   };
 
   try {
-    const res = await fetch(`http://back-end-systembarber-production-9e00.up.railway.app/api/produtos/${edit.id}`, {
+    const res = await fetch(`https://back-end-systembarber-production-9e00.up.railway.app/api/produtos/${edit.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(produtoAtualizado),
@@ -88,7 +88,7 @@ function CardNewProduto(){
       status_produto: status ? 1 : 0,
     };
 
-    const res = await fetch('http://back-end-systembarber-production-9e00.up.railway.app/api/produtos', {
+    const res = await fetch('https://back-end-systembarber-production-9e00.up.railway.app/api/produtos', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(novoProduto),
