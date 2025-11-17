@@ -73,7 +73,9 @@ const editarServico = async (id_servico, servicoAtualizado) => {
   const excluirServico = async (id_servico) => {
     try {
       await deletarServico(id_servico);
+      console.log(serviceList)
       setServiceList((prev) => prev.filter((s) => s.id_servico !== id_servico));
+      console.log(serviceList)
     } catch (error) {
       console.error("Erro ao excluir serviço:", error);
     }
