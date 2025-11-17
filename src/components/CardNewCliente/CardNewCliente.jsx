@@ -3,6 +3,8 @@ import styles from './CardNewCliente.module.css'
 import { useContext, useState } from 'react'
 import CLIENTES from '../../store/context/ClientesContext'
 import { v4 as uuidv4 } from 'uuid'
+const BASE_URL = import.meta.env.VITE_API_URL;
+const API_URL = `${BASE_URL}/api/clientes`
 function CardNewCliente (){
     const { cliente, setCliente, setAddClienteArea, adicionarCliente } = useContext(CLIENTES)
 
@@ -33,7 +35,7 @@ function CardNewCliente (){
         setCadastro('');
         setAddClienteArea((prev)=> !prev)
         
-        const res = await fetch("http://localhost:4000/api/clientes");
+        const res = await fetch(`${API_URL}`);
         const listaAtualizada = await res.json();
         setCliente(listaAtualizada);
 

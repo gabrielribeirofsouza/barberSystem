@@ -11,7 +11,7 @@ export async function listarClientes() {
 
 // Criar novo cliente
 export const adicionarCliente = async (cliente) => {
-  const response = await fetch("http://localhost:4000/api/clientes", {
+  const response = await fetch(`${API_URL}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(cliente),
