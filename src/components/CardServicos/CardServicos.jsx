@@ -13,7 +13,7 @@ function CardServicos ({nome_servico, descricao_servico, preco_servico, duracao_
     const classe = status_servico ? styles.statusActive : styles.statusOff
 
     const excluir = async () => {
-        const confirmar = window.confirm(`Deseja realmente excluir o serviço "${name}"?`);
+        const confirmar = window.confirm(`Deseja realmente excluir o serviço "${nome_servico}"?`);
         if (!confirmar) return;
 
         try {
