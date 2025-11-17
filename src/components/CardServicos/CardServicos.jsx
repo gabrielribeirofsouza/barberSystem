@@ -15,6 +15,10 @@ function CardServicos ({nome_servico, descricao_servico, preco_servico, duracao_
     const excluir = async () => {
         const confirmar = window.confirm(`Deseja realmente excluir o serviço "${nome_servico}"?`);
         if (!confirmar) return;
+          if (!id_servico || isNaN(Number(id_servico))) {
+        alert('ID do serviço inválido');
+        return;
+  }
 
         try {
             await excluirServico(id_servico); 

@@ -37,6 +37,12 @@ export async function atualizarServico(id_servico, servicoAtualizado) {
 // DELETE
 export async function deletarServico(id_servico) {
   const res = await fetch(`${API_URL}/${id_servico}`, { method: 'DELETE' });
-  if (!res.ok) throw new Error('Erro ao excluir serviço');
-  return 
+
+  if (!res.ok) {
+    const errorBody = await res.json().catch(() => ({}));
+    throw new Error(errorBody.error || 'Erro ao excluir serviço');
+  }
+
+  return; 
 }
+
