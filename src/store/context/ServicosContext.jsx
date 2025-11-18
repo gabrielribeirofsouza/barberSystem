@@ -21,7 +21,7 @@ export const ServicosProvider = ({ children }) => {
       try {
         const data = await listarServicos();
         const formatados = data.map(s => ({
-          id_servico: s.id_servico,
+          id_servico: s.id_servico || s.id,
           nome_servico: s.nome_servico,
           descricao_servico: s.descricao_servico,
           preco_servico: s.preco_servico,
@@ -42,9 +42,9 @@ export const ServicosProvider = ({ children }) => {
 
   try {
     const novo = await adicionarServico(servico);
-    console.log("Resposta do backend:", novo);
+    
     const formatado = {
-      id_servico: novo.id_servico,
+      id_servico: novo.id || novo.id_servico,
       nome_servico: novo.nome_servico,
       descricao_servico: novo.descricao_servico,
       preco_servico: novo.preco_servico,
