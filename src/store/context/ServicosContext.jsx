@@ -39,8 +39,10 @@ export const ServicosProvider = ({ children }) => {
   }, []);
 
   const criarServico = async (servico) => {
+
   try {
     const novo = await adicionarServico(servico);
+    console.log("Resposta do backend:", novo);
     const formatado = {
       id_servico: novo.id_servico,
       nome_servico: novo.nome_servico,
