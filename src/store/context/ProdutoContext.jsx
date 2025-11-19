@@ -28,13 +28,13 @@ export const ProdutosProvider = ({children})=>{
     setInfoProduct((prev) => [...prev,{ ...novo, id_produto: novo.id}]);
   }
 
-  async function editarProduto(id, produtoAtualizado) {
-  const { produto } = await atualizarProduto(id, produtoAtualizado);
+ async function editarProduto(id, produtoAtualizado) {
+  const produto = await atualizarProduto(id, produtoAtualizado);
 
   setInfoProduct((prev) =>
     prev.map((p) =>
       Number(p.id_produto) === Number(id)
-        ? { ...p, ...produto }
+        ? { ...p, ...produto, id_produto: produto.id_produto ?? p.id_produto }
         : p
     )
   );
