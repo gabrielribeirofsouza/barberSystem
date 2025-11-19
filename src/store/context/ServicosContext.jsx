@@ -63,7 +63,11 @@ const editarServico = async (id_servico, servicoAtualizado) => {
     await atualizarServico(id_servico, servicoAtualizado);
   
     setServiceList((prev) =>
-      prev.map((s) => s.id_servico === id_servico ? servicoAtualizado : s)
+      prev.map((s) =>
+  s.id_servico === id_servico
+    ? { ...servicoAtualizado, id_servico } 
+    : s
+)
     );
     
   } catch (error) {
