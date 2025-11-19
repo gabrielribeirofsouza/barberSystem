@@ -4,10 +4,9 @@ import { useContext } from 'react'
 
 import PRODUTOS from '../../store/context/ProdutoContext'
 function CardProduto({name, description, category, price, quantity, status, id_produto}){
-     console.log("CARD RECEBEU:", name, description, category, price, quantity, status, id_produto)
+     
     const {edit, setEdit, showContainer,  removerProduto} = useContext(PRODUTOS)
     const editar = (id_produto)=>{
-         console.log("ID NO EDIT:", id_produto)
         setEdit({id: id_produto, statusContainerEdit: true})
     };
     const excluir = () => {
@@ -57,7 +56,7 @@ function CardProduto({name, description, category, price, quantity, status, id_p
                     </button>
                     <button
                         className={edit.statusContainerEdit === true ? styles.btnDeletDisable : styles.btnDelet} 
-                        onClick={excluir}>
+                        onClick={() => excluir}>
                         <span>
                             <FaTrash />
                         </span>
