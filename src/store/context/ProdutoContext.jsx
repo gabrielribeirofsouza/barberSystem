@@ -29,12 +29,12 @@ export const ProdutosProvider = ({children})=>{
   }
 
   async function editarProduto(id, produtoAtualizado) {
-  const produto = await atualizarProduto(id, produtoAtualizado);
+  const { produto } = await atualizarProduto(id, produtoAtualizado);
 
   setInfoProduct((prev) =>
     prev.map((p) =>
       Number(p.id_produto) === Number(id)
-        ? produto
+        ? { ...p, ...produto }
         : p
     )
   );

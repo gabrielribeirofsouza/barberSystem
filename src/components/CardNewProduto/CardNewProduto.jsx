@@ -33,30 +33,15 @@ function CardNewProduto(){
     status_produto: status ? 1 : 0
   };
 
-  try {
-    const res = await fetch(`https://back-end-systembarber-production-9e00.up.railway.app/api/produtos/${edit.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(produtoAtualizado),
-    });
+    try {
+    await editarProduto(edit.id, produtoAtualizado);
 
-    if (!res.ok) throw new Error('Erro ao atualizar produto');
-
-    // Atualiza o estado local com os novos dados
-    setInfoProduct(
-      infoProduct.map((p) =>
-        p.id_produto === edit.id
-          ? { ...p, ...produtoAtualizado }
-          : p
-      )
-    );
-
-    // Fecha o container de edição
     setEdit({ statusContainerEdit: false });
   } catch (error) {
     alert(error.message);
   }
 };
+
     const cancelEdit = ()=>{
          setEdit({statusContainerEdit: false})
     }
