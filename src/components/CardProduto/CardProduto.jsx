@@ -3,10 +3,10 @@ import styles from './CardProduto.module.css'
 import { useContext } from 'react'
 
 import PRODUTOS from '../../store/context/ProdutoContext'
-function CardProduto({name, description, category, price, quantity, status, id}){
+function CardProduto({name, description, category, price, quantity, status, id_produto}){
     const {edit, setEdit, showContainer,  removerProduto} = useContext(PRODUTOS)
     const editar = ()=>{
-        setEdit({id, statusContainerEdit: true})
+        setEdit({id: id_produto, statusContainerEdit: true})
     };
     const excluir = () => {
   if (!window.confirm('Deseja realmente excluir este produto?')) return;
