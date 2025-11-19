@@ -13,7 +13,7 @@ function CardNewProduto(){
     const [status, setStatus] = useState(false)
     
     const searchProduct = () => {
-        return infoProduct.find(item => item.id_produto === edit.id);
+        return infoProduct.find(item => Number(item.id_produto) === Number(edit.id));
     }
 
     const togleStatus = ()=>{
@@ -97,10 +97,10 @@ function CardNewProduto(){
     if (!res.ok) throw new Error('Erro ao criar produto');
 
     const data = await res.json();
-    console.log('Resposta da API ao criar produto:', data);
+    
 
-    // Atualiza o estado local com o retorno
-    setInfoProduct([...infoProduct, { ...novoProduto, id_produto: data.insertId }]);
+   
+    setInfoProduct([...infoProduct, { ...novoProduto, id_produto: data.id }]);
     setShowContainer((prev) => !prev);
 
     // Limpa o formulário

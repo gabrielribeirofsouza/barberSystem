@@ -25,19 +25,24 @@ export const ProdutosProvider = ({children})=>{
 
  async function adicionarProduto(produto) {
     const novo = await criarProduto(produto);
-    setInfoProduct((prev) => [...prev, novo]);
+    setInfoProduct((prev) => [...prev,{ ...novo, id_produto: novo.id}]);
   }
 
   async function editarProduto(id, produtoAtualizado) {
-    await atualizarProduto(id, produtoAtualizado);
-    setInfoProduct((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, ...produtoAtualizado } : p))
-    );
-  }
+  const produto = await atualizarProduto(id, produtoAtualizado);
+
+  setInfoProduct((prev) =>
+    prev.map((p) =>
+      Number(p.id_produto) === Number(id)
+        ? produto
+        : p
+    )
+  );
+}
 
   async function removerProduto(id) {
     await deletarProduto(id);
-    setInfoProduct((prev) => prev.filter((p) => p.id !== id));
+    setInfoProduct((prev) => prev.filter((p) => Number(p.id_produto) !== Number(id)));
   }
     const value = {
         showContainer, setShowContainer, infoProduct, setInfoProduct, edit, setEdit, adicionarProduto, editarProduto, removerProduto
