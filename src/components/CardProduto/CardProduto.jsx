@@ -6,13 +6,13 @@ import PRODUTOS from '../../store/context/ProdutoContext'
 function CardProduto({name, description, category, price, quantity, status, id_produto}){
      console.log("CARD RECEBEU:", name, description, category, price, quantity, status, id_produto)
     const {edit, setEdit, showContainer,  removerProduto} = useContext(PRODUTOS)
-    const editar = ()=>{
+    const editar = (id_produto)=>{
          console.log("ID NO EDIT:", id)
         setEdit({id: id_produto, statusContainerEdit: true})
     };
     const excluir = () => {
   if (!window.confirm('Deseja realmente excluir este produto?')) return;
-  removerProduto(id);
+  removerProduto(id_produto);
 };
     const classe = ()=>{
         if(edit.statusContainerEdit === true || showContainer === true)
@@ -49,7 +49,7 @@ function CardProduto({name, description, category, price, quantity, status, id_p
                 <div className={styles.containerButton}>
                     <button
                         className={classe()}
-                        onClick={edit.statusContainerEdit === true ? undefined : editar}>
+                        onClick={edit.statusContainerEdit === true ? undefined : () => editar(id_produto)}>
                         <span>
                             <FaEdit />
                         </span>
