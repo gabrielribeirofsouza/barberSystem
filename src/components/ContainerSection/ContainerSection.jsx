@@ -118,7 +118,7 @@ function ContainerSection({titleContainer, id, description}){
         if(id === 'Produtos'){
             return infoProduct.map((p)=>{
                return(
-                <CardProduto key={p.id_produto} name={p.nome_produto} description={p.descricao_produto} category={p.categoria_produto} price={p.preco_produto} quantity={p.estoque_produto} status={p.status_produto} id={p.id_produto}/>)
+                <CardProduto key={p.id_produto} name={p.nome_produto} description={p.descricao_produto} category={p.categoria_produto} price={p.preco_produto} quantity={p.estoque_produto} status={p.status_produto} id_produto={p.id_produto}/>)
             })
         }
     }

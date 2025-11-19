@@ -7,7 +7,7 @@ function CardProduto({name, description, category, price, quantity, status, id_p
      console.log("CARD RECEBEU:", name, description, category, price, quantity, status, id_produto)
     const {edit, setEdit, showContainer,  removerProduto} = useContext(PRODUTOS)
     const editar = (id_produto)=>{
-         console.log("ID NO EDIT:", id)
+         console.log("ID NO EDIT:", id_produto)
         setEdit({id: id_produto, statusContainerEdit: true})
     };
     const excluir = () => {
