@@ -85,7 +85,7 @@ function CardNewProduto(){
     
 
    
-    setInfoProduct([...infoProduct, { ...novoProduto, id_produto: data.id }]);
+    setInfoProduct(prev => [...prev, data]);
     setShowContainer((prev) => !prev);
 
     // Limpa o formulário

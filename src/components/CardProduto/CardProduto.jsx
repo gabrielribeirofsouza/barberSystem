@@ -56,7 +56,7 @@ function CardProduto({name, description, category, price, quantity, status, id_p
                     </button>
                     <button
                         className={edit.statusContainerEdit === true ? styles.btnDeletDisable : styles.btnDelet} 
-                        onClick={() => excluir}>
+                        onClick={() => excluir()}>
                         <span>
                             <FaTrash />
                         </span>

@@ -27,8 +27,8 @@ export async function atualizarProduto(id, produto) {
   return res.json();
 }
 
-export async function deletarProduto(id) {
-  const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+export async function deletarProduto(id_produto) {
+  const res = await fetch(`${API_URL}/${id_produto}`, { method: 'DELETE' });
   if (!res.ok) throw new Error('Erro ao deletar produto');
   return res.json();
 }

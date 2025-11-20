@@ -23,10 +23,10 @@ export const ProdutosProvider = ({children})=>{
     fetchData();
   }, []);
 
- async function adicionarProduto(produto) {
-    const novo = await criarProduto(produto);
-    setInfoProduct((prev) => [...prev,{ ...novo, id_produto: novo.id}]);
-  }
+async function adicionarProduto(produto) {
+  const novo = await criarProduto(produto);
+  setInfoProduct(prev => [...prev, novo]);
+}
 
  async function editarProduto(id, produtoAtualizado) {
   const produto = await atualizarProduto(id, produtoAtualizado);
@@ -40,9 +40,9 @@ export const ProdutosProvider = ({children})=>{
   );
 }
 
-  async function removerProduto(id) {
-    await deletarProduto(id);
-    setInfoProduct((prev) => prev.filter((p) => Number(p.id_produto) !== Number(id)));
+  async function removerProduto(id_produto) {
+    await deletarProduto(id_produto);
+    setInfoProduct((prev) => prev.filter((p) => Number(p.id_produto) !== Number(id_produto)));
   }
     const value = {
         showContainer, setShowContainer, infoProduct, setInfoProduct, edit, setEdit, adicionarProduto, editarProduto, removerProduto
