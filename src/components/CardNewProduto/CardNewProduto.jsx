@@ -80,7 +80,7 @@ function CardNewProduto(){
     });
 
     if (!res.ok) throw new Error('Erro ao criar produto');
-
+    console.log(data)
     const data = await res.json();
     
 
