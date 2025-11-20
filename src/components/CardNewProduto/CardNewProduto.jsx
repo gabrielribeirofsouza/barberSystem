@@ -36,14 +36,14 @@ function CardNewProduto(){
     try {
     await editarProduto(edit.id, produtoAtualizado);
 
-    setEdit({ statusContainerEdit: false });
+    setEdit((prev) => ({ ...prev, statusContainerEdit: false }));
   } catch (error) {
     alert(error.message);
   }
 };
 
     const cancelEdit = ()=>{
-         setEdit({statusContainerEdit: false})
+          setEdit((prev) => ({ ...prev, statusContainerEdit: false }));
     }
     const cancelCreate = ()=>{
         setShowContainer((prev)=> !prev)
