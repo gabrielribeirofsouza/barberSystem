@@ -8,7 +8,7 @@ MicroSAAS para gestão de barbearias: clientes, agendamentos e administração e
 ## 🚀 Tecnologias
 
 - **Frontend:** React  
-- **Backend:** Java  
+- **Backend:** Node
 - **Banco de Dados:** MySQL  
 - **Versionamento:** Git + GitHub  
 
